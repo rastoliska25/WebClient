@@ -29,6 +29,7 @@ public class WebClientController {
 
     @GetMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public void saveUser(){webClientService.saveUser();}
+    public Mono<User> saveUser(){
+        return webClientService.saveUser();}
 
 }
