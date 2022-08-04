@@ -29,17 +29,6 @@ public class WebClientService {
                 .bodyToMono(User.class);
     }
 
-/*
-    public void saveUser(){
-        User user = new User(1, "Ferko", "testovac");
-        this.webClient.post().uri("/user")
-                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .headers(h -> h.setBearerAuth("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjU5NjM2NDAwLCJpYXQiOjE2NTk2MDA0MDB9.vdafL-RsYUyKc5ws0KOx07sm7O9kyFvCAj6coFUovW8"))
-                .body(Mono.just(user), User.class)
-                .exchange();
-    }
- */
-
     public Mono<User> saveUser(){
         User user = new User(100, "Ferko2", "testovac2");
         return this.webClient.post().uri("/user")
@@ -47,5 +36,15 @@ public class WebClientService {
                 .headers(h -> h.setBearerAuth("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjU5NjM2NDAwLCJpYXQiOjE2NTk2MDA0MDB9.vdafL-RsYUyKc5ws0KOx07sm7O9kyFvCAj6coFUovW8"))
                 .body(Mono.just(user), User.class).retrieve()
                 .bodyToMono(User.class);
+    }
+
+    public Mono<Statue> saveStatue(){
+        Generator generator = new Generator();
+        Statue statue = new Statue("socha1", 1, generator.weight, generator.length, generator.width, generator.height);
+        return this.webClient.post().uri("/statue")
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .headers(h -> h.setBearerAuth("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjU5NjM2NDAwLCJpYXQiOjE2NTk2MDA0MDB9.vdafL-RsYUyKc5ws0KOx07sm7O9kyFvCAj6coFUovW8"))
+                .body(Mono.just(statue), Statue.class).retrieve()
+                .bodyToMono(Statue.class);
     }
 }
