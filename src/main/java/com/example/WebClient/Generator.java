@@ -8,4 +8,6 @@ public class Generator {
     Long length = new Random().nextLong(250,1400);
     Long width = new Random().nextLong(250,700);
     Long height = new Random().nextLong(400,2300);
+
+    String socha = "socha " + rand.nextInt(1,100);
 }

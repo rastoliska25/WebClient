@@ -7,9 +7,12 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/web")
-public class WebClientController {
+public class
+WebClientController {
 
     @Autowired
     WebClientService webClientService;
@@ -32,9 +35,15 @@ public class WebClientController {
     public Mono<User> saveUser(){
         return webClientService.saveUser();}
 
+    /*
     @GetMapping("/createStatues")
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Statue> saveStatue(){
         return webClientService.saveStatue();}
+*/
 
+    @GetMapping("/createStatues")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Mono<Statue> saveStatue(){
+        return webClientService.saveStatue();}
 }

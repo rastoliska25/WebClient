@@ -19,6 +19,34 @@ public class Statue {
 
     private Long height;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Integer getTypeId() {
+        return typeId;
+    }
+
+    public Long getWeight() {
+        return weight;
+    }
+
+    public Long getLength() {
+        return length;
+    }
+
+    public Long getWidth() {
+        return width;
+    }
+
+    public Long getHeight() {
+        return height;
+    }
+
     public Statue(String name, Integer typeId, Long weight, Long length, Long width, Long height) {
         this.name = name;
         this.typeId = typeId;
