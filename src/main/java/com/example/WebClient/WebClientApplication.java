@@ -2,7 +2,11 @@ package com.example.WebClient;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.MediaType;
+import reactor.core.Disposable;
+import reactor.core.publisher.Flux;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -36,10 +40,9 @@ public class WebClientApplication {
 						))
 						.collect(Collectors.toSet());
 
-		System.out.println(setStatues);
+		System.out.println("\n");
 
 		setStatues.forEach(statue -> System.out.println(statue));
-
 
 
     }

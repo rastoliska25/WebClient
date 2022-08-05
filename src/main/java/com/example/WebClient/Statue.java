@@ -19,6 +19,9 @@ public class Statue {
 
     private Long height;
 
+    public Statue(Long i) {
+    }
+
     public Integer getId() {
         return id;
     }

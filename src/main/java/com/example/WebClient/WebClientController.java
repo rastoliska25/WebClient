@@ -35,6 +35,7 @@ WebClientController {
     public Mono<User> saveUser(){
         return webClientService.saveUser();}
 
+
     /*
     @GetMapping("/createStatues")
     @ResponseStatus(HttpStatus.CREATED)
@@ -45,5 +46,10 @@ WebClientController {
     @GetMapping("/createStatues")
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Statue> saveStatue(){
+        return webClientService.saveStatue();}
+
+    @GetMapping("/createFlux")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Mono<Statue> saveStatueFlux(){
         return webClientService.saveStatue();}
 }
