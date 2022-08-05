@@ -65,13 +65,15 @@ public class WebClientService {
 
     public Mono<Statue> saveStatue() {
         Generator generator = new Generator();
-        //for(int pocet = 0; pocet<20; pocet++) {
-            Statue statue = new Statue(generator.socha, 1, generator.weight, generator.length, generator.width, generator.height);
+        Statue statue = new Statue(generator.socha, 1, generator.weight, generator.length, generator.width, generator.height);
+        for(int pocet = 0; pocet<20; pocet++) {
+            Statue statue2 = new Statue(generator.socha, 1, generator.weight, generator.length, generator.width, generator.height);
             this.webClient.post().uri("/statue")
                     .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                     .headers(h -> h.setBearerAuth(token))
-                    .body(Mono.just(statue), Statue.class).retrieve()
+                    .body(Mono.just(statue2), Statue.class).retrieve()
                     .bodyToMono(Statue.class);
+        }
         return this.webClient.post().uri("/statue")
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .headers(h -> h.setBearerAuth(token))
@@ -87,7 +89,7 @@ public class WebClientService {
         statues.add(new Statue("socha2", 1, new Random().nextLong(200,1300), new Random().nextLong(200,1300), new Random().nextLong(200,1300), new Random().nextLong(200,1300)));
         return this.webClient.post().uri("/statue")
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .headers(h -> h.setBearerAuth("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjU5NjM2NDAwLCJpYXQiOjE2NTk2MDA0MDB9.vdafL-RsYUyKc5ws0KOx07sm7O9kyFvCAj6coFUovW8"))
+                .headers(h -> h.setBearerAuth(token))
                 .body(Flux.just(statues), Statue.class).retrieve()
                 .bodyToMono(Statue.class);
 
