@@ -19,34 +19,9 @@ public class WebClientApplication {
     public static void main(String[] args) {
 		WebClientService webClientService;
 
-        SpringApplication.run(WebClientApplication.class, args);
-        System.out.println("test");
-
-        List<Statue> statues = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-			Generator generator = new Generator();
-			statues.add(new Statue(generator.socha, 1, generator.weight, generator.length, generator.width, generator.height));
-        }
-
-		statues.forEach(statue -> System.out.println(statue));
+		SpringApplication.run(WebClientApplication.class, args);
+		System.out.println("test");
 
 
-		Set<Statue> setStatues =
-				statues.stream()
-						.map(statue -> new Statue(
-								statue.getName() + "set",
-								statue.getTypeId(),
-								statue.getWeight(),
-								statue.getLength(),
-								statue.getWidth(),
-								statue.getHeight()
-						))
-						.collect(Collectors.toSet());
-
-		System.out.println("\n");
-
-		setStatues.forEach(statue -> System.out.println(statue));
-
-    }
-
+	}
 }

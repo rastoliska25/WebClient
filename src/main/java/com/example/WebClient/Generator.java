@@ -9,5 +9,7 @@ public class Generator {
     Long width = new Random().nextLong(250,700);
     Long height = new Random().nextLong(400,2300);
 
+    Integer typeID = new Random().nextInt(1,3);
+
     String socha = "socha " + rand.nextInt(1,100);
 }

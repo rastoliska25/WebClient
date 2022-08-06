@@ -61,12 +61,24 @@ public class WebClientService {
 
     public Mono<Statue> saveStatue() {
         Generator generator = new Generator();
-        //for(int pocet = 0; pocet<20; pocet++){
         Statue statue = new Statue(generator.socha, 1, generator.weight, generator.length, generator.width, generator.height);
         return this.webClient.post().uri("/statue")
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .headers(h -> h.setBearerAuth("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjU5NjM2NDAwLCJpYXQiOjE2NTk2MDA0MDB9.vdafL-RsYUyKc5ws0KOx07sm7O9kyFvCAj6coFUovW8"))
+                .headers(h -> h.setBearerAuth(token))
                 .body(Mono.just(statue), Statue.class).retrieve()
+                .bodyToMono(Statue.class);
+    }
+
+    public Mono<Statue> saveStatues() {
+        List<Statue> statues = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            Generator generator = new Generator();
+            statues.add(new Statue(generator.socha, generator.typeID, generator.weight, generator.length, generator.width, generator.height));
+        }
+        return this.webClient.post().uri("/statue/saveStatues")
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .headers(h -> h.setBearerAuth(token))
+                .body(Mono.just(statues), Statue.class).retrieve()
                 .bodyToMono(Statue.class);
     }
 
