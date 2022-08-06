@@ -82,4 +82,17 @@ public class WebClientService {
                 .bodyToMono(Statue.class);
     }
 
+    public Mono<Statue> saveStatues(Integer size) {
+        List<Statue> statues = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            Generator generator = new Generator();
+            statues.add(new Statue(generator.socha, generator.typeID, generator.weight, generator.length, generator.width, generator.height));
+        }
+        return this.webClient.post().uri("/statue/saveStatues")
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .headers(h -> h.setBearerAuth(token))
+                .body(Mono.just(statues), Statue.class).retrieve()
+                .bodyToMono(Statue.class);
+    }
+
 }

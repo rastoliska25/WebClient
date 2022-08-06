@@ -49,4 +49,9 @@ WebClientController {
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Statue> saveStatues(){
         return webClientService.saveStatues();}
+
+    @GetMapping("/createStatues/{size}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Mono<Statue> saveStatues(@PathVariable Integer size){
+        return webClientService.saveStatues(size);}
 }
