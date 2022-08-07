@@ -17,7 +17,7 @@ import java.util.Random;
 public class WebClientService {
     private final WebClient webClient;
 
-    String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjU5ODEzMDMzLCJpYXQiOjE2NTk3NzcwMzN9.d7JzT7yXXgDVW5bJVuwRSQVUHnB4yC1Tz99i6E-fERI";
+    String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjU5OTAwNzMwLCJpYXQiOjE2NTk4NjQ3MzB9.n2IThL0_gYbvDQOcrkDzKw4xUZseSuaL3fK2IYmHYM8";
     public WebClientService(WebClient.Builder webClientBuilder) {
         this.webClient = webClientBuilder.baseUrl("http://localhost:8080").build();
     }
@@ -75,7 +75,7 @@ public class WebClientService {
             Generator generator = new Generator();
             statues.add(new Statue(generator.socha, generator.typeID, generator.weight, generator.length, generator.width, generator.height));
         }
-        return this.webClient.post().uri("/statue/saveStatues")
+        return this.webClient.post().uri("/statue/publishStatues")
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .headers(h -> h.setBearerAuth(token))
                 .body(Mono.just(statues), Statue.class).retrieve()
@@ -88,7 +88,7 @@ public class WebClientService {
             Generator generator = new Generator();
             statues.add(new Statue(generator.socha, generator.typeID, generator.weight, generator.length, generator.width, generator.height));
         }
-        return this.webClient.post().uri("/statue/saveStatues")
+        return this.webClient.post().uri("/statue/publishStatues")
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .headers(h -> h.setBearerAuth(token))
                 .body(Mono.just(statues), Statue.class).retrieve()
