@@ -17,7 +17,7 @@ import java.util.Random;
 public class WebClientService {
     private final WebClient webClient;
 
-    String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjU5OTAwNzMwLCJpYXQiOjE2NTk4NjQ3MzB9.n2IThL0_gYbvDQOcrkDzKw4xUZseSuaL3fK2IYmHYM8";
+    String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjU5OTg1NjA4LCJpYXQiOjE2NTk5NDk2MDh9.pNumpKQeXY7o7tjl63o531UsUuG6xIyT4wEl0hnuvls";
     public WebClientService(WebClient.Builder webClientBuilder) {
         this.webClient = webClientBuilder.baseUrl("http://localhost:8080").build();
     }
