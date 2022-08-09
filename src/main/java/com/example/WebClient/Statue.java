@@ -5,7 +5,6 @@ import lombok.Data;
 
 @Data
 public class Statue {
-    private Integer id;
 
     private String name;
 
@@ -20,10 +19,6 @@ public class Statue {
     private Long height;
 
     public Statue(Long i) {
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public String getName() {
@@ -62,7 +57,6 @@ public class Statue {
     @Override
     public String toString() {
         return "Statue{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", typeId=" + typeId +
                 ", weight=" + weight +
