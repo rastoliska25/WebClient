@@ -1,23 +1,22 @@
 package com.example.WebClient;
 
+import com.example.WebClient.security.Authentication;
+import com.example.WebClient.security.Jwt;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.Disposable;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 @Service
 public class WebClientService {
     private final WebClient webClient;
 
-    String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjYwMDY1NTY4LCJpYXQiOjE2NjAwMjk1Njh9.Ggrs5QXxqYRIvjyywSWKX_R3b24RNacDQXkN_6DKRYk";
+    String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjYwMTAzMTg5LCJpYXQiOjE2NjAwNjcxODl9.lcEftgKtJi_ssct8mSeyTWff4LkqLmJhlxMFKD-hc0U";
     public WebClientService(WebClient.Builder webClientBuilder) {
         this.webClient = webClientBuilder.baseUrl("http://localhost:8080").build();
     }
@@ -94,5 +93,19 @@ public class WebClientService {
                 .body(Mono.just(statues), Statue.class).retrieve()
                 .bodyToMono(Statue.class);
     }
+
+    public void findJwt() {
+        Authentication authentication = new Authentication("user", "password");
+        System.out.println("token");
+
+        Mono<Jwt> token = this.webClient.post().uri("/authenticate")
+                .header(HttpHeaders.CONTENT_TYPE, "application/json")
+                //.headers(h -> h.setBearerAuth(token))
+                .body(Mono.just(authentication), Authentication.class).retrieve()
+                .bodyToMono(Jwt.class);
+        System.out.println(token.block());
+    }
+
+
 
 }
