@@ -99,7 +99,6 @@ public class WebClientService {
         Authentication authentication = new Authentication("user", "password");
         Mono<Jwt> tokenJwt = this.webClient.post().uri("/authenticate")
                 .header(HttpHeaders.CONTENT_TYPE, "application/json")
-                //.headers(h -> h.setBearerAuth(token))
                 .body(Mono.just(authentication), Authentication.class).retrieve()
                 .bodyToMono(Jwt.class);
         token = Objects.requireNonNull(tokenJwt.block()).getJwt();
