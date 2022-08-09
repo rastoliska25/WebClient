@@ -11,12 +11,13 @@ import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class WebClientService {
     private final WebClient webClient;
 
-    String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjYwMTAzMTg5LCJpYXQiOjE2NjAwNjcxODl9.lcEftgKtJi_ssct8mSeyTWff4LkqLmJhlxMFKD-hc0U";
+    String token;
     public WebClientService(WebClient.Builder webClientBuilder) {
         this.webClient = webClientBuilder.baseUrl("http://localhost:8080").build();
     }
@@ -96,14 +97,12 @@ public class WebClientService {
 
     public void findJwt() {
         Authentication authentication = new Authentication("user", "password");
-        System.out.println("token");
-
-        Mono<Jwt> token = this.webClient.post().uri("/authenticate")
+        Mono<Jwt> tokenJwt = this.webClient.post().uri("/authenticate")
                 .header(HttpHeaders.CONTENT_TYPE, "application/json")
                 //.headers(h -> h.setBearerAuth(token))
                 .body(Mono.just(authentication), Authentication.class).retrieve()
                 .bodyToMono(Jwt.class);
-        System.out.println(token.block());
+        token = Objects.requireNonNull(tokenJwt.block()).getJwt();
     }
 
 
