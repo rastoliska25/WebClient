@@ -55,9 +55,9 @@ WebClientController {
         return webClientService.saveStatues(size);}
 
 
-    @GetMapping(value = "/authentication")
+    @PostMapping(value = "/authentication")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void authenticateJWT(){
-        webClientService.findJwt();
+    public void authenticateJWT(@RequestBody Authentication authentication){
+        webClientService.findJwt(authentication);
     }
 }

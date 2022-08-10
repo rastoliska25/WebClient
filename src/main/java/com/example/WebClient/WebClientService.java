@@ -95,8 +95,7 @@ public class WebClientService {
                 .bodyToMono(Statue.class);
     }
 
-    public void findJwt() {
-        Authentication authentication = new Authentication("user", "password");
+    public void findJwt(Authentication authentication) {
         Mono<Jwt> tokenJwt = this.webClient.post().uri("/authenticate")
                 .header(HttpHeaders.CONTENT_TYPE, "application/json")
                 .body(Mono.just(authentication), Authentication.class).retrieve()
