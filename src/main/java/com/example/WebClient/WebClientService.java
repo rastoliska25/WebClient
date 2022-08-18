@@ -37,7 +37,10 @@ public class WebClientService {
     }
 
     public Mono<User> saveUser() {
-        User user = new User("Ferko2", "testovac2");
+        User user = User.novyUser()
+                .name("Ferko")
+                .role("Testovac 2")
+                .build();
         return this.webClient.post().uri("/user")
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .headers(h -> h.setBearerAuth(token))
