@@ -21,6 +21,9 @@ public class Statue {
     public Statue(Long i) {
     }
 
+    public Statue(long nextLong, long nextLong1, long nextLong2) {
+    }
+
     public String getName() {
         return name;
     }
