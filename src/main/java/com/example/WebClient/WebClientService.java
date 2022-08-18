@@ -61,7 +61,7 @@ public class WebClientService {
 
     public Mono<Statue> saveStatue() {
         Generator generator = new Generator();
-        Statue statue = new Statue(generator.socha, 1, generator.weight, generator.length, generator.width, generator.height);
+        Statue statue = generator.createStatue();
         return this.webClient.post().uri("/statue")
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .headers(h -> h.setBearerAuth(token))
@@ -86,7 +86,7 @@ public class WebClientService {
         List<Statue> statues = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             Generator generator = new Generator();
-            statues.add(new Statue(generator.socha, generator.typeID, generator.weight, generator.length, generator.width, generator.height));
+            statues.add(generator.createStatue());
         }
         return this.webClient.post().uri("/statue/publishStatues")
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
