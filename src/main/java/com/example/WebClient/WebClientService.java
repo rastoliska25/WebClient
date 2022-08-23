@@ -63,8 +63,7 @@ public class WebClientService {
     }
 
     public Mono<Statue> saveStatue() {
-        Generator generator = new Generator();
-        Statue statue = generator.createStatue();
+        Statue statue = Generator.createStatue();
         return this.webClient.post().uri("/statue")
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .headers(h -> h.setBearerAuth(token))
@@ -75,8 +74,7 @@ public class WebClientService {
     public Mono<Statue> saveStatues() {
         List<Statue> statues = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            Generator generator = new Generator();
-            statues.add(generator.createStatue());
+            statues.add(Generator.createStatue());
         }
         return this.webClient.post().uri("/statue/publishStatues")
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
@@ -88,8 +86,7 @@ public class WebClientService {
     public Mono<Statue> saveStatues(Integer size) {
         List<Statue> statues = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            Generator generator = new Generator();
-            statues.add(generator.createStatue());
+            statues.add(Generator.createStatue());
         }
         return this.webClient.post().uri("/statue/publishStatues")
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
@@ -105,7 +102,4 @@ public class WebClientService {
                 .bodyToMono(Jwt.class);
         token = Objects.requireNonNull(tokenJwt.block()).getJwt();
     }
-
-
-
 }
