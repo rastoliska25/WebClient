@@ -37,7 +37,7 @@ public class WebClientService {
     }
 
     public Mono<User> saveUser() {
-        User user = User.novyUser()
+        User user = User.builder()
                 .name("Ferko")
                 .role("Testovac 2")
                 .build();
