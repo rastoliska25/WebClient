@@ -80,12 +80,19 @@ WebClientController {
         webClientService.decryptMessage();
     }
 
-
     //test viac messages
     @GetMapping("/encryptMessages")
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<User> encryptMessages() {
         return webClientService.encryptMessages();
     }
+
+
+    @GetMapping("/encryptMessages2")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void encryptMessages2() {
+        webClientService.encryptMessagesVoid();
+    }
+
 
 }

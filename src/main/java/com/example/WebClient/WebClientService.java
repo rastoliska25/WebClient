@@ -148,4 +148,17 @@ public class WebClientService {
                 .body(Mono.just(users), User.class).retrieve()
                 .bodyToMono(User.class);
     }
+
+    public void encryptMessagesVoid() {
+        List<User> users = new ArrayList<>();
+        for (int i = 0; i < 500; i++) {
+            users.add(UserGenerator.createUser());
+        }
+        Mono<User> response = this.webClient.post().uri("/encrypts")
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .body(Mono.just(users), User.class).retrieve()
+                .bodyToMono(User.class);
+
+        System.out.println(Objects.requireNonNull(response.block()));
+    }
 }
