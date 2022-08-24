@@ -51,13 +51,41 @@ WebClientController {
 
     @GetMapping("/createStatues/{size}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<Statue> saveStatues(@PathVariable Integer size){
-        return webClientService.saveStatues(size);}
-
+    public Mono<Statue> saveStatues(@PathVariable Integer size) {
+        return webClientService.saveStatues(size);
+    }
 
     @PostMapping(value = "/authentication")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void authenticateJWT(@RequestBody Authentication authentication){
+    public void authenticateJWT(@RequestBody Authentication authentication) {
         webClientService.findJwt(authentication);
     }
+
+    //encryption test
+    @GetMapping("/createKey")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void key() {
+        webClientService.createKey();
+    }
+
+    @GetMapping("/encryptMessage")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void encrypt() {
+        webClientService.encryptMessage();
+    }
+
+    @GetMapping("/decryptMessage")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void decrypt() {
+        webClientService.decryptMessage();
+    }
+
+
+    //test viac messages
+    @GetMapping("/encryptMessages")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Mono<User> encryptMessages() {
+        return webClientService.encryptMessages();
+    }
+
 }
