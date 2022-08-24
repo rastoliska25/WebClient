@@ -5,10 +5,12 @@ import io.swagger.v3.oas.annotations.info.Info;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @OpenAPIDefinition(info = @Info(title = "ShopWebClient API", version = "1.0", description = "ShopWebClient microservice"))
 @Slf4j
+@EnableScheduling
 public class WebClientApplication {
 
     public static void main(String[] args) {
