@@ -28,13 +28,14 @@ public class CronJobService {
         webClientService.createKey();
     }
 
+    //test
+
     @SneakyThrows
     @Scheduled(cron = "0/5 * * * * ?") //(fixedRate = 10000)
     @Async
     public void encryptMessages2() {
         webClientService.encryptMessagesVoid();
     }
-
 
 }
 
