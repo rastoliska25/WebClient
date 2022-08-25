@@ -21,8 +21,5 @@ public class WebClientApplication {
 		log.info("test3");
 		log.info("test4");
 
-		//CronJobService cronJobService = new CronJobService();
-		//cronJobService.createKey();
-
 	}
 }
