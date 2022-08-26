@@ -18,36 +18,40 @@ WebClientController {
 
     @GetMapping("/user/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Mono<User> getUserById(@PathVariable Long id){
+    public Mono<User> getUserById(@PathVariable Long id) {
         return webClientService.findUserById(id);
     }
 
-    @GetMapping(value = "/user",produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    @GetMapping(value = "/user", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Flux<User> findAllUsers(){
+    public Flux<User> findAllUsers() {
         return webClientService.findUsers();
     }
     //curl http://localhost:8081/web/user
 
     @GetMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<User> saveUser(){
-        return webClientService.saveUser();}
+    public Mono<User> saveUser() {
+        return webClientService.saveUser();
+    }
 
     @GetMapping("/createUsers")
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<User> saveUsers(){
-        return webClientService.saveUsers();}
+    public Mono<User> saveUsers() {
+        return webClientService.saveUsers();
+    }
 
     @GetMapping("/createStatue")
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<Statue> saveStatue(){
-        return webClientService.saveStatue();}
+    public Mono<Statue> saveStatue() {
+        return webClientService.saveStatue();
+    }
 
     @GetMapping("/createStatues")
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<Statue> saveStatues(){
-        return webClientService.saveStatues();}
+    public Mono<Statue> saveStatues() {
+        return webClientService.saveStatues();
+    }
 
     @GetMapping("/createStatues/{size}")
     @ResponseStatus(HttpStatus.CREATED)

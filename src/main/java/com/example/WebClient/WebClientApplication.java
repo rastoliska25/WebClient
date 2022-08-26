@@ -14,12 +14,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class WebClientApplication {
 
     public static void main(String[] args) {
-
-		SpringApplication.run(WebClientApplication.class, args);
-		System.out.println("test");
-		log.info("test2");
-		log.info("test3");
-		log.info("test4");
-
-	}
+        SpringApplication.run(WebClientApplication.class, args);
+    }
 }
